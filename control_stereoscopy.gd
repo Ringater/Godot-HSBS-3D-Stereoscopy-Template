@@ -4,6 +4,8 @@ extends Node
 @export var setIPD = 0.06;
 @export var swapEyes = false;
 @export var topAndBottom = true;
+@export var planeOffset = 15; ## Sets how far forward the Node2D is.
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,9 +31,13 @@ func _process(delta: float) -> void:
 			if swapEyes:
 				$Control/SubViewportContainer/SubViewport/Node3D/Camera3D.h_offset = setIPD;
 				$Control/SubViewportContainer3/SubViewport/Node3D/Camera3D.h_offset = 0-setIPD;
+				$Control/SubViewportContainer/SubViewport/Node3D/Node2D.position.x = 0-planeOffset;
+				$Control/SubViewportContainer3/SubViewport/Node3D/Node2D.position.x = planeOffset;
 			else:
 				$Control/SubViewportContainer/SubViewport/Node3D/Camera3D.h_offset = 0-setIPD;
 				$Control/SubViewportContainer3/SubViewport/Node3D/Camera3D.h_offset = setIPD;
+				$Control/SubViewportContainer/SubViewport/Node3D/Node2D.position.x = planeOffset;
+				$Control/SubViewportContainer3/SubViewport/Node3D/Node2D.position.x = 0-planeOffset;
 				
 			self.scale = Vector2(1, 0.5);
 			
@@ -43,14 +49,19 @@ func _process(delta: float) -> void:
 			if swapEyes:
 				$Control/SubViewportContainer/SubViewport/Node3D/Camera3D.h_offset = setIPD;
 				$Control/SubViewportContainer2/SubViewport/Node3D/Camera3D.h_offset = 0-setIPD;
+				$Control/SubViewportContainer/SubViewport/Node3D/Node2D.position.x = 0-planeOffset;
+				$Control/SubViewportContainer2/SubViewport/Node3D/Node2D.position.x = planeOffset;
 			else:
 				$Control/SubViewportContainer/SubViewport/Node3D/Camera3D.h_offset = 0-setIPD;
 				$Control/SubViewportContainer2/SubViewport/Node3D/Camera3D.h_offset = setIPD;
+				$Control/SubViewportContainer/SubViewport/Node3D/Node2D.position.x = planeOffset;
+				$Control/SubViewportContainer2/SubViewport/Node3D/Node2D.position.x = 0-planeOffset;
 			
 			self.scale = Vector2(0.5, 1);
 		
 	else:
 		
 		$Control/SubViewportContainer/SubViewport/Node3D/Camera3D.h_offset = 0;
+		$Control/SubViewportContainer/SubViewport/Node3D/Node2D.position.x = 0;
 		
 		self.scale = Vector2(1, 1);

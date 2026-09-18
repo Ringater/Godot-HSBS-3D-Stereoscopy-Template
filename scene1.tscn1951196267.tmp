@@ -72,6 +72,7 @@ omni_range = 4096.0
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("5_b6skf")
 centered = false
+offset = Vector2(-2048, 0)
 script = ExtResource("5_tq727")
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="Control" unique_id=458531878]
